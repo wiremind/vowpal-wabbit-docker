@@ -4,7 +4,7 @@ WORKDIR /app
 RUN apk add --no-cache --virtual build-deps build-base git python3-dev boost-dev zlib-dev && \
     git clone --depth 1 --branch master --single-branch \
     git://github.com/JohnLangford/vowpal_wabbit.git /app/build && \
-    cd /app/build && make && make install &&\
+    cd /app/build && git checkout 8.5.0 && make && make install &&\
     cd / && \
     apk del build-deps && \
     rm -rf /var/cache/apk/* && rm -rf /app/build && \

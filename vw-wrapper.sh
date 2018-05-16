@@ -5,6 +5,8 @@ SAVE_FILE="/app/saved-data/save.model"
 CACHE_FILE="/app/saved-data/vw.cache"
 PARAMS="--daemon --foreground -f $SAVE_FILE -c --cache_file $CACHE_FILE"
 
+s3uploader &
+
 if [ -f $SAVE_FILE ]; then
   echo "Previous model found: loading it."
   COMMAND="$VW $PARAMS -i $SAVE_FILE $@"
@@ -16,3 +18,4 @@ else
   $COMMAND
 fi
 
+kill %1

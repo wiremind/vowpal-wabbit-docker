@@ -5,7 +5,9 @@ SAVE_FILE="/app/saved-data/save.model"
 CACHE_FILE="/app/saved-data/vw.cache"
 PARAMS="--daemon --foreground -f $SAVE_FILE"
 
-s3uploader &
+if [ $S3_ENABLED ]; then
+  s3uploader &
+fi
 
 if [ -f $SAVE_FILE ]; then
   echo "Previous model found: loading it."

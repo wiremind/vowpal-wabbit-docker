@@ -18,6 +18,7 @@ VOWPAL_WABBIT_OPTIONS="--loss_function poisson --max_prediction 6 --min_predicti
 mkdir -p $VOLUME_LOCATION
 
 docker run -d --restart always -p $VOWPAL_PORT:26542 -p $HTTP_PORT:5000 -p--name $NAME \
+    -e S3_ENABLED=1 \
     -e S3_URL='minio.yourserver.net' -e S3_ACCESS_KEY=abcdefghi -e S3_SECRET_KEY=jklmnopqr
     -v $VOLUME_LOCATION:/app/saved-data desaintmartin/vowpal-wabbit \
     $VOWPAL_WABBIT_OPTIONS

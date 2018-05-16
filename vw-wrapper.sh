@@ -3,7 +3,7 @@
 VW="vw"
 SAVE_FILE="/app/saved-data/save.model"
 CACHE_FILE="/app/saved-data/vw.cache"
-PARAMS="--daemon --foreground -f $SAVE_FILE -c --cache_file $CACHE_FILE"
+PARAMS="--daemon --foreground -f $SAVE_FILE"
 
 s3uploader &
 

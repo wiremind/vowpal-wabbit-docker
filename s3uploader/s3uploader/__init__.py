@@ -1,4 +1,5 @@
 from flask import Flask
+import logging
 from minio import Minio
 from minio.error import (ResponseError, BucketAlreadyOwnedByYou,
                          BucketAlreadyExists)
@@ -6,6 +7,8 @@ import os
 import time
 
 app = Flask(__name__)
+app.logger.setLevel(logging.ERROR)
+logging.getLogger('werkzeug').setLevel(logging.ERROR)
 
 minioClient = None
 bucket_name = os.environ.get('S3_BUCKET_NAME', 'vowpal')
@@ -13,7 +16,6 @@ model_name = os.environ.get('VOWPAL_WABBIT_MODEL_NAME')
 
 @app.route('/triggerUpload')
 def triggerUpload():
-    # Put an object 'pumaserver_debug.log' with contents from 'pumaserver_debug.log'.
     try:
         minioClient.fput_object(bucket_name, 'model_%s_%s' % (model_name, time.strftime("%Y%m%d-%H%M%S")), '/app/saved-data/save.model')
     except ResponseError as err:

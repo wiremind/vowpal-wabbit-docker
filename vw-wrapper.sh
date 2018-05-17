@@ -6,7 +6,8 @@ CACHE_FILE="/app/saved-data/vw.cache"
 PARAMS="--daemon --foreground -f $SAVE_FILE"
 
 if [ $S3_ENABLED ]; then
-  s3uploader &
+  echo "Launching watcher for s3uploader..."
+  s3uploader > /dev/null &
 fi
 
 if [ -f $SAVE_FILE ]; then

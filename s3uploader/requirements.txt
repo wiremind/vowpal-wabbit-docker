@@ -8,5 +8,5 @@ minio==4.0.0
 python-dateutil==2.7.3
 pytz==2018.4
 six==1.11.0
-urllib3==1.22
+urllib3==1.26.5
 Werkzeug==0.14.1
